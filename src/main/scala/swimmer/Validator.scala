@@ -3,8 +3,6 @@ package swimmer
 object Validator:
   extension (value: String)
     def isPin: Boolean = value.length == 7
-    def isInt(text: String): Boolean = text.matches("\\d+")
-    def isDouble(text: String): Boolean = text.matches("\\d{0,7}([\\.]\\d{0,4})?")
 
   extension (swimmer: Swimmer)
     def isValid =
