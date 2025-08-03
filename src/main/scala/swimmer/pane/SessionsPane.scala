@@ -123,18 +123,18 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
 
   def add(): Unit =
     SessionDialog(context, Session(swimmerId = model.selectedSwimmerId.value)).showAndWait() match
-      case Some(session: Session) => model.add(0, session) {
+      case Some(session: Session) =>
+        model.add(session)
         tableView.selectionModel().select(0)
-      }
       case _ =>
 
   def update(): Unit =
     val selectedIndex = tableView.selectionModel().getSelectedIndex
     val session = tableView.selectionModel().getSelectedItem.session
     SessionDialog(context, session).showAndWait() match
-      case Some(session: Session) => model.update(selectedIndex, session){
+      case Some(session: Session) =>
+        model.update(session)
         tableView.selectionModel().select(selectedIndex)
-      }
       case _ =>
 
   def chart(): Unit = ChartDialog(context, model).showAndWait()
