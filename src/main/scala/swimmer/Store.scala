@@ -3,11 +3,7 @@ package swimmer
 import com.typesafe.config.Config
 import com.zaxxer.hikari.HikariDataSource
 
-import java.time.LocalDate
-import java.util.concurrent.TimeUnit
 import javax.sql.DataSource
-
-import scala.concurrent.duration.FiniteDuration
 
 import scalikejdbc.*
 

@@ -2,7 +2,6 @@ package swimmer
 
 import java.time.{Instant, LocalDateTime, ZoneOffset}
 import java.time.format.DateTimeFormatter
-import java.util.UUID
 
 import scalafx.beans.property.ObjectProperty
 
