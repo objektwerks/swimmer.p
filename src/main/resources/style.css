@@ -1,0 +1,7 @@
+* {
+  -fx-text-fill: navy;
+}
+.tooltip {
+    -fx-show-delay: 100ms;
+    -fx-show-duration: 6s
+}
