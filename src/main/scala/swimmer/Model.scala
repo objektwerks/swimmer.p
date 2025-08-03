@@ -6,9 +6,7 @@ import scalafx.application.Platform
 import scalafx.collections.ObservableBuffer
 import scalafx.beans.property.ObjectProperty
 
-import Fault.given
-
-final class Model(fetcher: Fetcher) extends LazyLogging:
+final class Model() extends LazyLogging:
   val shouldBeInFxThread = (message: String) => require(Platform.isFxApplicationThread, message)
   val shouldNotBeInFxThread = (message: String) => require(!Platform.isFxApplicationThread, message)
 
