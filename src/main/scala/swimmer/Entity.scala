@@ -18,18 +18,7 @@ object Entity:
   def toLocalDateTime(epochMillis: Long): LocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMillis), ZoneOffset.UTC)
   def toEpochMillis(localDateTime: LocalDateTime): Long = localDateTime.toInstant(ZoneOffset.UTC).toEpochMilli
 
-final case class Account(id: Long = 0,
-                         license: String = UUID.randomUUID.toString,
-                         emailAddress: String = "",
-                         pin: String = Pin.newInstance,
-                         activated: Long = Instant.now.toEpochMilli,
-                         deactivated: Long = 0) extends Entity derives CanEqual
-
-object Account:
-  val empty = Account(license = "", emailAddress = "", pin = "", activated = 0, deactivated = 0)
-
 final case class Swimmer(id: Long = 0,
-                         accountId: Long,
                          name: String) extends Entity derives CanEqual:
   val nameProperty = ObjectProperty[String](this, "name", name)
   val swimmer = this

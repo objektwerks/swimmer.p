@@ -66,17 +66,17 @@ final class SwimmersPane(context: Context, model: Model) extends VBox:
   }
 
   def add(): Unit =
-    SwimmerDialog(context, Swimmer(accountId = model.objectAccount.get.id, name = "")).showAndWait() match
-      case Some(swimmer: Swimmer) => model.add(0, swimmer) {
+    SwimmerDialog(context, Swimmer(name = "")).showAndWait() match
+      case Some(swimmer: Swimmer) =>
+        model.add(swimmer)
         tableView.selectionModel().select(swimmer.copy(id = model.selectedSwimmerId.value))
-      }
       case _ =>
 
   def update(): Unit =
     val selectedIndex = tableView.selectionModel().getSelectedIndex
     val swimmer = tableView.selectionModel().getSelectedItem.swimmer
     SwimmerDialog(context, swimmer).showAndWait() match
-      case Some(swimmer: Swimmer) => model.update(selectedIndex, swimmer) {
+      case Some(swimmer: Swimmer) =>
+        model.update(swimmer)
         tableView.selectionModel().select(selectedIndex)
-      }
       case _ =>
