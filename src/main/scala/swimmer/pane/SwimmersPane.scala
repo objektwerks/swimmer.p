@@ -6,7 +6,7 @@ import scalafx.scene.control.{Button, SelectionMode, Tab, TabPane, TableColumn, 
 import scalafx.scene.layout.{HBox, Priority, VBox}
 
 import swimmer.{Context, Model, Swimmer}
-import swimmer.dialog.{AccountDialog, FaultsDialog, SwimmerDialog, DeactivateReactivate}
+import swimmer.dialog.SwimmerDialog
 
 final class SwimmersPane(context: Context, model: Model) extends VBox:
   spacing = 6
@@ -32,21 +32,9 @@ final class SwimmersPane(context: Context, model: Model) extends VBox:
     disable = true
     onAction = { _ => update() }
 
-  val faultsButton = new Button:
-    graphic = context.faultsImage
-    text = context.buttonFaults
-    disable = true
-    onAction = { _ => faults() }
-
-  val accountButton = new Button:
-    graphic = context.accountImage
-    text = context.buttonAccount
-    disable = false
-    onAction = { _ => account() }
-
   val buttonBar = new HBox:
     spacing = 6
-    children = List(addButton, editButton, faultsButton, accountButton)
+    children = List(addButton, editButton)
   
   val tab = new Tab:
   	text = context.tabSwimmers
@@ -63,10 +51,6 @@ final class SwimmersPane(context: Context, model: Model) extends VBox:
   children = List(tabPane)
   VBox.setVgrow(tableView, Priority.Always)
   VBox.setVgrow(tabPane, Priority.Always)
-
-  model.observableFaults.onChange { (_, _) =>
-    faultsButton.disable = false
-  }
 
   tableView.onMouseClicked = { event =>
     if (event.getClickCount == 2 && tableView.selectionModel().getSelectedItem != null) update()
@@ -95,12 +79,4 @@ final class SwimmersPane(context: Context, model: Model) extends VBox:
       case Some(swimmer: Swimmer) => model.update(selectedIndex, swimmer) {
         tableView.selectionModel().select(selectedIndex)
       }
-      case _ =>
-
-  def faults(): Unit = FaultsDialog(context, model).showAndWait() match
-    case _ => faultsButton.disable = model.observableFaults.isEmpty
-
-  def account(): Unit = AccountDialog(context, model.objectAccount.get).showAndWait() match
-      case Some( DeactivateReactivate( Some(deactivate), None) ) => model.deactivate(deactivate)
-      case Some( DeactivateReactivate( None, Some(reactivate) ) ) => model.reactivate(reactivate)
       case _ =>
