@@ -40,13 +40,4 @@ final class Model(store: Store) extends LazyLogging:
 
   def add(session: Session): Long = store.addSession(session)
 
-  def update(selectedIndex: Int, session: Session)(runLast: => Unit): Unit =
-    fetcher.fetch(
-      SaveSession(objectAccount.get.license, session),
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.save session", session, fault)
-        case SessionSaved(id) =>
-          observableSessions.update(selectedIndex, session)
-          runLast
-        case _ => ()
-    )
+  def update(session: Session): Long = store.updateSession(session)
