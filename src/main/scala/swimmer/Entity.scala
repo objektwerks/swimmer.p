@@ -1,8 +1,5 @@
 package swimmer
 
-import com.github.plokhotnyuk.jsoniter_scala.core.*
-import com.github.plokhotnyuk.jsoniter_scala.macros.*
-
 import java.time.{Instant, LocalDateTime, ZoneOffset}
 import java.time.format.DateTimeFormatter
 import java.util.UUID
@@ -13,8 +10,6 @@ sealed trait Entity:
   val id: Long
 
 object Entity:
-  given JsonValueCodec[Entity] = JsonCodecMaker.make[Entity](CodecMakerConfig.withDiscriminatorFieldName(None))
-
   val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd, hh:mm a")
 
   def format(epochMillis: Long): String = formatter.format( toLocalDateTime(epochMillis) )
@@ -32,7 +27,6 @@ final case class Account(id: Long = 0,
 
 object Account:
   val empty = Account(license = "", emailAddress = "", pin = "", activated = 0, deactivated = 0)
-  given JsonValueCodec[Account] = JsonCodecMaker.make[Account]
 
 final case class Swimmer(id: Long = 0,
                          accountId: Long,
@@ -41,7 +35,6 @@ final case class Swimmer(id: Long = 0,
   val swimmer = this
 
 object Swimmer:
-  given JsonValueCodec[Swimmer] = JsonCodecMaker.make[Swimmer]
   given swimmerOrdering: Ordering[Swimmer] = Ordering.by[Swimmer, String](s => s.name)
 
 final case class Session(id: Long = 0,
@@ -87,7 +80,6 @@ final case class Session(id: Long = 0,
 
 object Session:
   val MET = 6
-  given JsonValueCodec[Session] = JsonCodecMaker.make[Session]
   given sessionOrdering: Ordering[Session] = Ordering.by[Session, Long](session => session.datetime).reverse
 
 enum WeightUnit:
