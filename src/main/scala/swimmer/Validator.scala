@@ -1,9 +1,6 @@
 package swimmer
 
 object Validator:
-  extension (value: String)
-    def isPin: Boolean = value.length == 7
-
   extension (swimmer: Swimmer)
     def isValid =
       swimmer.id >= 0 &&
