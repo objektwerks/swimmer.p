@@ -10,9 +10,6 @@ final class Model() extends LazyLogging:
   val shouldBeInFxThread = (message: String) => require(Platform.isFxApplicationThread, message)
   val shouldNotBeInFxThread = (message: String) => require(!Platform.isFxApplicationThread, message)
 
-  val registered = ObjectProperty[Boolean](true)
-  val loggedin = ObjectProperty[Boolean](true)
-
   val selectedSwimmerId = ObjectProperty[Long](0)
   val selectedSessionId = ObjectProperty[Long](0)
 
@@ -22,14 +19,8 @@ final class Model() extends LazyLogging:
     sessions(newSwimmerId)
   }
 
-  val objectAccount = ObjectProperty[Account](Account.empty)
   val observableSwimmers = ObservableBuffer[Swimmer]()
   val observableSessions = ObservableBuffer[Session]()
-  val observableFaults = ObservableBuffer[Fault]()
-
-  objectAccount.onChange { (_, oldAccount, newAccount) =>
-    logger.info("*** object account onchange event: {} -> {}", oldAccount, newAccount)
-  }
 
   observableSwimmers.onChange { (_, changes) =>
     logger.info("*** observable swimmers onchange event: {}", changes)
@@ -38,65 +29,6 @@ final class Model() extends LazyLogging:
   observableSessions.onChange { (_, changes) =>
     logger.info("*** observable sessions onchange event: {}", changes)
   }
-
-  def onFetchFault(source: String, fault: Fault): Unit =
-    val cause = s"$source - $fault"
-    logger.error("*** cause: {}", cause)
-    observableFaults += fault.copy(cause = cause)
-
-  def onFetchFault(source: String, entity: Entity, fault: Fault): Unit =
-    val cause = s"$source - $entity - $fault"
-    logger.error("*** cause: {}", cause)
-    observableFaults += fault.copy(cause = cause)
-
-  def add(fault: Fault): Unit =
-    fetcher.fetch(
-      AddFault(objectAccount.get.license, fault),
-      (event: Event) => event match
-        case fault @ Fault(cause, _) => onFetchFault("Model.add fault", fault)
-        case FaultAdded() =>
-          observableFaults += fault
-          observableFaults.sort()
-        case _ => ()
-    )
-
-  def register(register: Register): Unit =
-    fetcher.fetch(
-      register,
-      (event: Event) => event match
-        case fault @ Fault(_, _) => registered.set(false)
-        case Registered(account) => objectAccount.set(account)
-        case _ => ()
-    )
-
-  def login(login: Login): Unit =
-    fetcher.fetch(
-      login,
-      (event: Event) => event match
-        case fault @ Fault(_, _) => loggedin.set(false)
-        case LoggedIn(account) =>
-          objectAccount.set(account)
-          swimmers()
-        case _ => ()
-    )
-
-  def deactivate(deactivate: Deactivate): Unit =
-    fetcher.fetch(
-      deactivate,
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.deactivate", fault)
-        case Deactivated(account) => objectAccount.set(account)
-        case _ => ()
-    )
-
-  def reactivate(reactivate: Reactivate): Unit =
-    fetcher.fetch(
-      reactivate,
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.reactivate", fault)
-        case Reactivated(account) => objectAccount.set(account)
-        case _ => ()
-    )
 
   def swimmers(): Unit =
     fetcher.fetch(
