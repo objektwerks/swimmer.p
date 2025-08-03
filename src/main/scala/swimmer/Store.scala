@@ -31,7 +31,6 @@ final class Store(dataSource: DataSource):
         .map(rs =>
           Swimmer(
             rs.long("id"),
-            rs.long("account_id"),
             rs.string("name"), 
           )
         )
@@ -41,7 +40,7 @@ final class Store(dataSource: DataSource):
   def addSwimmer(swimmer: Swimmer): Long =
     DB localTx { implicit session =>
       sql"""
-        insert into swimmer(account_id, name) values(${swimmer.accountId}, ${swimmer.name})
+        insert into swimmer(name) values(${swimmer.name})
         """
         .updateAndReturnGeneratedKey()
     }
