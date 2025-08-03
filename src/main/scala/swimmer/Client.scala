@@ -10,7 +10,8 @@ import swimmer.dialog.Alerts
 object Client extends JFXApp3 with LazyLogging:
   private val conf = ConfigFactory.load("client.conf")
   private val context = Context(conf)
-  private val model = Model(fetcher)
+  private val store = Store(conf)
+  private val model = Model(store)
 
   override def start(): Unit =
     val view = View(context, model)
