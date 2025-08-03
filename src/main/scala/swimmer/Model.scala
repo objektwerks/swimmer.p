@@ -6,7 +6,7 @@ import scalafx.application.Platform
 import scalafx.collections.ObservableBuffer
 import scalafx.beans.property.ObjectProperty
 
-final class Model() extends LazyLogging:
+final class Model(store: Store) extends LazyLogging:
   val shouldBeInFxThread = (message: String) => require(Platform.isFxApplicationThread, message)
   val shouldNotBeInFxThread = (message: String) => require(!Platform.isFxApplicationThread, message)
 
@@ -30,29 +30,9 @@ final class Model() extends LazyLogging:
     logger.info("*** observable sessions onchange event: {}", changes)
   }
 
-  def swimmers(): Unit =
-    fetcher.fetch(
-      ListSwimmers(objectAccount.get.license, objectAccount.get.id),
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.swimmers", fault)
-        case SwimmersListed(swimmers) =>
-          observableSwimmers.clear()
-          observableSwimmers ++= swimmers
-        case _ => ()
-    )
+  def swimmers(accountId: Long): List[Swimmer] = store.listSwimmers(accountId)
 
-  def add(selectedIndex: Int, swimmer: Swimmer)(runLast: => Unit): Unit =
-    fetcher.fetch(
-      SaveSwimmer(objectAccount.get.license, swimmer),
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.save swimmer", swimmer, fault)
-        case SwimmerSaved(id) =>
-          observableSwimmers += swimmer.copy(id = id)
-          observableSwimmers.sort()
-          selectedSwimmerId.set(id)
-          runLast
-        case _ => ()
-    )
+  def add(swimmer: Swimmer): Long = store.addSwimmer(swimmer)
 
   def update(selectedIndex: Int, swimmer: Swimmer)(runLast: => Unit): Unit =
     fetcher.fetch(
