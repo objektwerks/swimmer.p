@@ -38,18 +38,7 @@ final class Model(store: Store) extends LazyLogging:
 
   def sessions(swimmerId: Long): List[Session] = store.listSessions(swimmerId)
 
-  def add(selectedIndex: Int, session: Session)(runLast: => Unit): Unit =
-    fetcher.fetch(
-      SaveSession(objectAccount.get.license, session),
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.save session", session, fault)
-        case SessionSaved(id) =>
-          observableSessions += session.copy(id = id)
-          observableSessions.sort()
-          selectedSessionId.set(id)
-          runLast
-        case _ => ()
-    )
+  def add(session: Session): Long = store.addSession(session)
 
   def update(selectedIndex: Int, session: Session)(runLast: => Unit): Unit =
     fetcher.fetch(
