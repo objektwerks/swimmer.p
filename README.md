@@ -5,13 +5,6 @@ Swimmer ( Personal Edition )
 Model
 -----
 >A session represents a workout, requiring the user to **replicate** data across sessions.
-* Account 1 ---> * Swimmer
-* Swimmer 1 ---> * Session
-
-Alternative Model
------------------
->A workout represents an optional **template** for a session, removing the need to **replicate** data across sessions.
-* Account 1 ---> * Swimmer | Workout
 * Swimmer 1 ---> * Session
 
 Calculations
