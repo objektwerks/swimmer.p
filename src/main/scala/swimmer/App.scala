@@ -8,7 +8,7 @@ import scalafx.application.JFXApp3
 object App extends JFXApp3 with LazyLogging:
   private val conf = ConfigFactory.load("app.conf")
   private val context = Context(conf)
-  private val store = Store(conf)
+  private val store = Store(context)
   private val model = Model(store)
 
   override def start(): Unit =
