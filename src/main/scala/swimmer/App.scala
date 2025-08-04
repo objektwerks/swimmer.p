@@ -11,10 +11,10 @@ import scalafx.application.JFXApp3
 object App extends JFXApp3 with LazyLogging:
   logger.info("Swimmer starting ...")
 
-  private val conf = ConfigFactory.load("app.conf")
-  private val context = Context(conf)
-  private val store = Store(context)
-  private val model = Model(store)
+  val conf = ConfigFactory.load("app.conf")
+  val context = Context(conf)
+  val store = Store(context)
+  val model = Model(store)
 
   override def start(): Unit =
     val view = View(context, model)
@@ -32,6 +32,6 @@ object App extends JFXApp3 with LazyLogging:
         taskbar.setIconImage(appIcon)
     
     stage.show()
-    logger.info("Swimmer started, server url: {}", context.url)
+    logger.info("Swimmer started at url: {}", context.url)
 
   override def stopApp(): Unit = logger.info("Swimmer stopped.")
