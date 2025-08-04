@@ -49,12 +49,15 @@ final class Model(store: Store) extends LazyLogging:
 
   def sessions(swimmerId: Long): List[Session] =
     supervised:
+      assertNotInFxThread("list sessions")
       store.listSessions(swimmerId)
 
   def add(session: Session): Long =
     supervised:
+      assertNotInFxThread("add session")
       store.addSession(session)
 
   def update(session: Session): Long =
     supervised:
+      assertNotInFxThread("update session")
       store.updateSession(session)
