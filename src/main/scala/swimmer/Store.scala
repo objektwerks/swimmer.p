@@ -18,9 +18,9 @@ final class Store(context: Context):
 
   ConnectionPool.singleton(DataSourceConnectionPool(dataSource))
 
-  def listSwimmers(accountId: Long): List[Swimmer] =
+  def listSwimmers(): List[Swimmer] =
     DB readOnly { implicit session =>
-      sql"select * from swimmer where account_id = $accountId order by name"
+      sql"select * from swimmer order by name"
         .map(rs =>
           Swimmer(
             rs.long("id"),
