@@ -48,6 +48,8 @@ final class Model(store: Store) extends LazyLogging:
     supervised:
       store.listSessions(swimmerId)
 
-  def add(session: Session): Long = store.addSession(session)
+  def add(session: Session): Long =
+    supervised:
+      store.addSession(session)
 
   def update(session: Session): Long = store.updateSession(session)
