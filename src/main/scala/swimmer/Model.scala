@@ -56,10 +56,12 @@ final class Model(store: Store) extends LazyLogging:
       assertNotInFxThread("list sessions")
       observableSessions ++= store.listSessions(swimmerId)
 
-  def add(session: Session): Long =
+  def add(session: Session): Unit =
     supervised:
       assertNotInFxThread("add session")
-      store.addSession(session)
+      val id = store.addSession(session)
+      observableSessions.insert(0, session.copy(id = id))
+      selectedSessionId.value = id
 
   def update(session: Session): Long =
     supervised:
