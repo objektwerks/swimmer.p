@@ -1,25 +1,22 @@
 package swimmer
 
-import com.typesafe.config.Config
 import com.zaxxer.hikari.HikariDataSource
 
 import javax.sql.DataSource
 
 import scalikejdbc.*
 
-object Store:
-  def apply(config: Config) = new Store( dataSource(config) )
-
-  def dataSource(config: Config): DataSource =
-    val ds = HikariDataSource()
-    ds.setDataSourceClassName(config.getString("db.driver"))
-    ds.addDataSourceProperty("url", config.getString("db.url"))
-    ds.addDataSourceProperty("user", config.getString("db.user"))
-    ds.addDataSourceProperty("password", config.getString("db.password"))
+final class Store(context: Context):
+  private val dataSource: DataSource =
+    val ds = new HikariDataSource()
+    ds.setDataSourceClassName(context.dataSourceClassName)
+    ds.addDataSourceProperty("url", context.url)
+    ds.addDataSourceProperty("user", context.user)
+    ds.addDataSourceProperty("password", context.password)
+    ds.setMaximumPoolSize(context.maximumPoolSize)
     ds
 
-final class Store(dataSource: DataSource):
-  ConnectionPool.singleton( DataSourceConnectionPool(dataSource) )
+  ConnectionPool.singleton(DataSourceConnectionPool(dataSource))
 
   def listSwimmers(accountId: Long): List[Swimmer] =
     DB readOnly { implicit session =>
