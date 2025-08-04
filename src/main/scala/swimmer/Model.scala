@@ -63,7 +63,9 @@ final class Model(store: Store) extends LazyLogging:
       observableSessions.insert(0, session.copy(id = id))
       selectedSessionId.value = id
 
-  def update(session: Session): Long =
+  def update(previousSession: Session, updatedSession: Session): Unit =
     supervised:
       assertNotInFxThread("update session")
-      store.updateSession(session)
+      store.updateSession(updatedSession)
+      val index = observableSessions.indexOf(previousSession)
+      if index > -1 then observableSessions.update(index, updatedSession)

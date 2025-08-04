@@ -83,7 +83,7 @@ final class Store(context: Context):
         .updateAndReturnGeneratedKey()
     }
 
-  def updateSession(sess: Session): Long =
+  def updateSession(sess: Session): Unit =
     DB localTx { implicit session =>
       sql"""
         update session set weight = ${sess.weight}, weight_unit = ${sess.weightUnit},
@@ -94,5 +94,4 @@ final class Store(context: Context):
         where id = ${sess.id}
         """
         .update()
-      sess.id
     }
