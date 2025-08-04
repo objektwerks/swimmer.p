@@ -76,7 +76,7 @@ final class SwimmersPane(context: Context, model: Model) extends VBox:
     val selectedIndex = tableView.selectionModel().getSelectedIndex
     val swimmer = tableView.selectionModel().getSelectedItem.swimmer
     SwimmerDialog(context, swimmer).showAndWait() match
-      case Some(swimmer: Swimmer) =>
-        model.update(swimmer)
+      case Some(updatedSwimmer: Swimmer) =>
+        model.update(swimmer, updatedSwimmer)
         tableView.selectionModel().select(selectedIndex)
       case _ =>

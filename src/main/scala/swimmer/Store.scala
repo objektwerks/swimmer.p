@@ -38,14 +38,13 @@ final class Store(context: Context):
         .updateAndReturnGeneratedKey()
     }
 
-  def updateSwimmer(swimmer: Swimmer): Long =
+  def updateSwimmer(swimmer: Swimmer): Unit =
     DB localTx { implicit session =>
       sql"""
         update swimmer set name = ${swimmer.name}
         where id = ${swimmer.id}
         """
         .update()
-      swimmer.id
     }
 
   def listSessions(swimmerId: Long): List[Session] =
