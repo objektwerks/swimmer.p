@@ -32,9 +32,10 @@ final class Model(store: Store) extends LazyLogging:
     logger.info("*** observable sessions onchange event: {}", changes)
   }
 
-  def swimmers(): List[Swimmer] =
+  def swimmers(): Unit =
     supervised:
-      store.listSwimmers()
+      assertNotInFxThread("swimmers")
+      observableSwimmers ++= store.listSwimmers()
 
   def add(swimmer: Swimmer): Long =
     supervised:
