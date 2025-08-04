@@ -5,6 +5,12 @@ import com.typesafe.config.Config
 import scalafx.scene.image.{Image, ImageView}
 
 final class Context(config: Config):
+  val url = config.getString("db.url")
+  val user = config.getString("db.user")
+  val password = config.getString("db.password")
+  val dataSourceClassName = config.getString("db.dataSourceClassName")
+  val maximumPoolSize = config.getInt("db.maximumPoolSize")
+
   val windowTitle = config.getString("window.title")
   val windowWidth = config.getDouble("window.width")
   val windowHeight = config.getDouble("window.height")
