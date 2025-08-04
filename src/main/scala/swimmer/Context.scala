@@ -9,9 +9,6 @@ final class Context(config: Config):
   val windowWidth = config.getDouble("window.width")
   val windowHeight = config.getDouble("window.height")
 
-  val url = config.getString("url")
-  val endpoint = config.getString("endpoint")
-
   val buttonAdd = config.getString("button.add")
   val buttonEdit = config.getString("button.edit")
   val buttonSave = config.getString("button.save")
