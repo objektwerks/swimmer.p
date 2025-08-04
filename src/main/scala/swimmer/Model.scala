@@ -36,7 +36,9 @@ final class Model(store: Store) extends LazyLogging:
     supervised:
       store.listSwimmers()
 
-  def add(swimmer: Swimmer): Long = store.addSwimmer(swimmer)
+  def add(swimmer: Swimmer): Long =
+    supervised:
+      store.addSwimmer(swimmer)
 
   def update(swimmer: Swimmer): Long = store.updateSwimmer(swimmer)
 
