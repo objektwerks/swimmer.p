@@ -21,6 +21,6 @@ object App extends JFXApp3 with LazyLogging:
       icons.add(context.logo)
     
     stage.show()
-    logger.info("*** client started, server url: {} endpoint: {}", context.url, context.endpoint)
+    logger.info("*** App started, server url: {}", context.url)
 
-  override def stopApp(): Unit = logger.info("*** client stopped.")
+  override def stopApp(): Unit = logger.info("*** App stopped.")
