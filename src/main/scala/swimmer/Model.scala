@@ -2,6 +2,8 @@ package swimmer
 
 import com.typesafe.scalalogging.LazyLogging
 
+import ox.supervised
+
 import scalafx.application.Platform
 import scalafx.collections.ObservableBuffer
 import scalafx.beans.property.ObjectProperty
@@ -30,7 +32,9 @@ final class Model(store: Store) extends LazyLogging:
     logger.info("*** observable sessions onchange event: {}", changes)
   }
 
-  def swimmers(): List[Swimmer] = store.listSwimmers()
+  def swimmers(): List[Swimmer] =
+    supervised:
+      store.listSwimmers()
 
   def add(swimmer: Swimmer): Long = store.addSwimmer(swimmer)
 
