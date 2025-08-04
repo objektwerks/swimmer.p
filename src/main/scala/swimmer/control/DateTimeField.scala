@@ -8,7 +8,7 @@ import scalafx.scene.control.{Button, Label, Spinner}
 import scalafx.scene.layout.{GridPane, HBox, Priority, VBox}
 import scalafx.stage.Popup
 
-import swimmer.{Client, Context, Entity}
+import swimmer.{App, Context, Entity}
 
 final class DateTimeField(context: Context, localDateTime: LocalDateTime) extends HBox:
   spacing = 3
@@ -35,7 +35,7 @@ final class DateTimeField(context: Context, localDateTime: LocalDateTime) extend
     popup.setHideOnEscape(false)
     val popupView = PopupView(context, value.value, popup, popupValue)
     popup.content.addOne(popupView)
-    popup.show(Client.stage)
+    popup.show(App.stage)
 
   private def popupValue(popupLocalDateTime: LocalDateTime): Unit =
     value.value = popupLocalDateTime

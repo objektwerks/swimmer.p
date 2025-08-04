@@ -6,11 +6,11 @@ import scalafx.scene.control.{ButtonType, CheckBox, ComboBox, Dialog}
 import scalafx.scene.control.ButtonBar.ButtonData
 import scalafx.scene.layout.Region
 
-import swimmer.{Client, Context, Entity, LapUnit, Session, Style, WeightUnit}
+import swimmer.{App, Context, Entity, LapUnit, Session, Style, WeightUnit}
 import swimmer.control.{CalorieTextField, DateTimeField, IntTextField}
 
 final class SessionDialog(context: Context, session: Session) extends Dialog[Session]:
-  initOwner(Client.stage)
+  initOwner(App.stage)
   title = context.windowTitle
   headerText = context.dialogSession
 

@@ -5,10 +5,10 @@ import scalafx.scene.layout.Region
 import scalafx.scene.control.{ButtonType, Dialog, TextField}
 import scalafx.scene.control.ButtonBar.ButtonData
 
-import swimmer.{Client, Context, Swimmer}
+import swimmer.{App, Context, Swimmer}
 
 final class SwimmerDialog(context: Context, swimmer: Swimmer) extends Dialog[Swimmer]:
-  initOwner(Client.stage)
+  initOwner(App.stage)
   title = context.windowTitle
   headerText = context.dialogSwimmer
 
