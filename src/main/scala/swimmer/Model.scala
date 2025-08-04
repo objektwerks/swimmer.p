@@ -9,15 +9,15 @@ import scalafx.collections.ObservableBuffer
 import scalafx.beans.property.ObjectProperty
 
 final class Model(store: Store) extends LazyLogging:
-  def shouldBeInFxThread(message: String): Unit = require(Platform.isFxApplicationThread, message)
-  def shouldNotBeInFxThread(message: String): Unit = require(!Platform.isFxApplicationThread, message)
+  def assertInFxThread(message: String): Unit = require(Platform.isFxApplicationThread, message)
+  def assertNotInFxThread(message: String): Unit = require(!Platform.isFxApplicationThread, message)
 
   val selectedSwimmerId = ObjectProperty[Long](0)
   val selectedSessionId = ObjectProperty[Long](0)
 
   selectedSwimmerId.onChange { (_, oldSwimmerId, newSwimmerId) =>
     logger.info("*** selected swimmer id onchange event: {} -> {}", oldSwimmerId, newSwimmerId)
-    shouldBeInFxThread("*** selected swimmer id onchange should be in fx thread.")
+    assertInFxThread("*** selected swimmer id onchange should be in fx thread.")
     sessions(newSwimmerId)
   }
 
