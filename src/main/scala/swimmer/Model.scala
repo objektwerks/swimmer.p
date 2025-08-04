@@ -30,7 +30,7 @@ final class Model(store: Store) extends LazyLogging:
     logger.info("*** observable sessions onchange event: {}", changes)
   }
 
-  def swimmers(accountId: Long): List[Swimmer] = store.listSwimmers(accountId)
+  def swimmers(): List[Swimmer] = store.listSwimmers()
 
   def add(swimmer: Swimmer): Long = store.addSwimmer(swimmer)
 
