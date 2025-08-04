@@ -51,10 +51,10 @@ final class Model(store: Store) extends LazyLogging:
       val index = observableSwimmers.indexOf(previousSwimmer)
       if index > -1 then observableSwimmers.update(index, updatedSwimmer)      
 
-  def sessions(swimmerId: Long): List[Session] =
+  def sessions(swimmerId: Long): Unit =
     supervised:
       assertNotInFxThread("list sessions")
-      store.listSessions(swimmerId)
+      observableSessions ++= store.listSessions(swimmerId)
 
   def add(session: Session): Long =
     supervised:
