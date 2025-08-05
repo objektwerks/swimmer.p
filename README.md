@@ -20,6 +20,14 @@ Test
 ----
 1. sbt clean test
 
+Assembly
+--------
+1. ```sbt clean test assembly copyAssemblyJar```
+
+Execute
+-------
+1. ```java -jar .assembly/swimmer-$version.jar```
+
 Resources
 ---------
 * [JavaFX](https://openjfx.io/index.html)
