@@ -12,7 +12,9 @@ final class StoreTest extends AnyFunSuite with Matchers:
   var swimmer = Swimmer(name = "fred")
 
   test("store"):
-    store.addSwimmer(swimmer)
+    val swimmerId = store.addSwimmer(swimmer)
+    swimmerId shouldBe 1
+    swimmer = swimmer.copy(id = swimmerId)
 
     swimmer = swimmer.copy(name = "fred flintstone")
     store.updateSwimmer(swimmer)
