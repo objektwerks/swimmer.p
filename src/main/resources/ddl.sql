@@ -20,3 +20,4 @@ create table if not exists session (
   calories int not null,
   datetime bigint not null
 );
+create index if not exists session_datetime_idx ON session(datetime);
