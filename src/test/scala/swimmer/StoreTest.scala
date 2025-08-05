@@ -1,3 +1,5 @@
+package swimmer
+
 import com.typesafe.config.ConfigFactory
 
 import org.scalatest.funsuite.AnyFunSuite
@@ -7,7 +9,7 @@ final class StoreTest extends AnyFunSuite with Matchers:
   val context = Context( ConfigFactory.load("test.conf") )
   val store = Store(context)
 
-  var swimmer = Swimmer("fred")
+  var swimmer = Swimmer(name = "fred")
 
   test("store"):
     store.addSwimmer(swimmer)
