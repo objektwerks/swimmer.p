@@ -55,7 +55,7 @@ final class Model(store: Store) extends LazyLogging:
 
   def sessions(swimmerId: Long): Unit =
     supervised:
-      assertNotInFxThread("list sessions")
+      assertNotInFxThread("*** list sessions should not be in fx thread!")
       observableSessions ++= store.listSessions(swimmerId)
 
   def add(session: Session): Unit =
