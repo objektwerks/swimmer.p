@@ -34,9 +34,9 @@ Deploy
 2. edit app.conf ( about > alert > contentText )
 3. edit package.json ( version + jdeploy / jar )
 4. sbt clean test assembly copyAssemblyJar
-5. perform github release ( from https://github.com/objektwerks/pool.balance.p )
+5. perform github release ( from https://github.com/objektwerks/swimmer.p )
 6. npm login
-7. jdeploy publish ( to https://www.jdeploy.com/~poolbalance )
+7. jdeploy publish ( to https://www.jdeploy.com/~swimmer-sessions )
 8. check email for npm message
 >See [jDeploy Docs](https://www.jdeploy.com/docs/manual/#_getting_started) for details.
 
