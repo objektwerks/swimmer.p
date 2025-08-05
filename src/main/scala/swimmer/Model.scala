@@ -48,7 +48,7 @@ final class Model(store: Store) extends LazyLogging:
 
   def update(previousSwimmer: Swimmer, updatedSwimmer: Swimmer): Unit =
     supervised:
-      assertNotInFxThread("update swimmer")
+      assertNotInFxThread("*** update swimmer should not be in fx thread!")
       store.updateSwimmer(updatedSwimmer)
       val index = observableSwimmers.indexOf(previousSwimmer)
       if index > -1 then observableSwimmers.update(index, updatedSwimmer)      
