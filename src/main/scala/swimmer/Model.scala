@@ -60,7 +60,7 @@ final class Model(store: Store) extends LazyLogging:
 
   def add(session: Session): Unit =
     supervised:
-      assertNotInFxThread("add session")
+      assertNotInFxThread("*** add session should not be in fx thread!")
       val id = store.addSession(session)
       observableSessions.insert(0, session.copy(id = id))
       selectedSessionId.value = id
