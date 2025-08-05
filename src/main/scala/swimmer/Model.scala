@@ -10,9 +10,9 @@ import scalafx.beans.property.ObjectProperty
 
 final class Model(store: Store) extends LazyLogging:
   def assertInFxThread(message: String, suffix: String = " should be in fx thread!"): Unit =
-    require(Platform.isFxApplicationThread, message)
+    require(Platform.isFxApplicationThread, message + suffix)
   def assertNotInFxThread(message: String, suffix: String = " should not be in fx thread!"): Unit =
-    require(!Platform.isFxApplicationThread, message)
+    require(!Platform.isFxApplicationThread, message + suffix)
 
   val selectedSwimmerId = ObjectProperty[Long](0)
   val selectedSessionId = ObjectProperty[Long](0)
