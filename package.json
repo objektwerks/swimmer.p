@@ -1,6 +1,6 @@
 {
   "bin": {
-      "swimmer-workout": "jdeploy-bundle/jdeploy.js"
+      "swimmer-sessions": "jdeploy-bundle/jdeploy.js"
   },
   "author": "Objektwerks",
   "description": "Swimmer app.",
@@ -27,7 +27,7 @@
       "shelljs": "^0.8.5"
   },
   "license": "Apache 2.0",
-  "name": "swimmer-workout",
+  "name": "swimmer-sessions",
   "files": [
       "jdeploy-bundle"
   ],
