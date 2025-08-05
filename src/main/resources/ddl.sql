@@ -2,6 +2,7 @@ create table if not exists swimmer (
   id long primary key auto_increment,
   name varchar(24) not null
 );
+create index if not exists swimmer_name_idx ON swimmer(name);
 
 create table if not exists session (
   id long primary key auto_increment,
