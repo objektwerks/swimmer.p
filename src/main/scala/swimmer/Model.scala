@@ -41,7 +41,7 @@ final class Model(store: Store) extends LazyLogging:
 
   def add(swimmer: Swimmer): Unit =
     supervised:
-      assertNotInFxThread("add swimmer")
+      assertNotInFxThread("*** add swimmer should not be in fx thread!")
       val id = store.addSwimmer(swimmer)
       observableSwimmers.insert(0, swimmer.copy(id = id))
       selectedSwimmerId.value = id
