@@ -4,7 +4,7 @@ Swimmer ( Personal Edition )
 
 Model
 -----
->A session represents a workout, requiring the user to **replicate** data across sessions.
+>A session represents a workout.
 * Swimmer 1 ---> * Session
 
 Calculations
