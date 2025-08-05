@@ -13,17 +13,20 @@ final class StoreTest extends AnyFunSuite with Matchers:
   var session = Session(swimmerId = 0)
 
   test("store"):
-    val swimmerId = addSwimmer()
-
-    swimmer = swimmer.copy(name = "fred flintstone")
-    store.updateSwimmer(swimmer)
-
-    store.listSwimmers().length shouldBe 1
+    addSwimmer()
+    updateSwimmer()
+    listSwimmers()
 
 
-  def addSwimmer(): Long =
+  def addSwimmer(): Unit =
     val swimmerId = store.addSwimmer(swimmer)
     swimmerId shouldBe 1
     swimmer = swimmer.copy(id = swimmerId)
     session = session.copy(swimmerId = swimmerId)
-    swimmerId
+
+  def updateSwimmer(): Unit =
+    swimmer = swimmer.copy(name = "fred flintstone")
+    store.updateSwimmer(swimmer)
+
+  def listSwimmers(): Unit =
+    store.listSwimmers().length shouldBe 1
