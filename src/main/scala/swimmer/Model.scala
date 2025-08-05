@@ -32,6 +32,8 @@ final class Model(store: Store) extends LazyLogging:
     logger.info("*** observable sessions onchange event: {}", changes)
   }
 
+  logger.info("*** Model initialized.")
+
   def swimmers(): Unit =
     supervised:
       assertNotInFxThread("list swimmers")
