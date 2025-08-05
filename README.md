@@ -50,6 +50,14 @@ jDeploy Install
 6. Add *jdeploy* and *jdeploy-bundle* to .gitignore
 >See [jDeploy Docs](https://www.jdeploy.com/docs/manual/#_getting_started) for details.
 
+NPM Versioning
+--------------
+>The ```build.sbt``` **must** contain a ```semver 3-digit``` **version** number. See: [Npmjs Semver](https://docs.npmjs.com/about-semantic-versioning)
+
+NPM Registry
+------------
+>Swimmer is deployed to: https://www.npmjs.com/package/swimmer-sessions
+
 Resources
 ---------
 * [JavaFX](https://openjfx.io/index.html)
