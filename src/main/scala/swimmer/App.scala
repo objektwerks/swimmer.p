@@ -31,9 +31,9 @@ object App extends JFXApp3 with LazyLogging:
         val appIcon = Toolkit.getDefaultToolkit.getImage(this.getClass().getResource("/image/icon.png"))
         taskbar.setIconImage(appIcon)
     
+    model.swimmers()
+
     stage.show()
     logger.info("Swimmer started at url: {}", context.url)
-
-    model.swimmers()
 
   override def stopApp(): Unit = logger.info("Swimmer stopped.")
