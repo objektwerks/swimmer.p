@@ -40,38 +40,38 @@ final class Model(store: Store) extends LazyLogging:
 
   def swimmers(): Unit =
     supervised:
-      assertNotInFxThread("*** swimmers should not be in fx thread!")
+      assertNotInFxThread("*** swimmers")
       observableSwimmers ++= store.listSwimmers()
 
   def add(swimmer: Swimmer): Unit =
     supervised:
-      assertNotInFxThread("*** add swimmer should not be in fx thread!")
+      assertNotInFxThread("*** add swimmer")
       val id = store.addSwimmer(swimmer)
       observableSwimmers.insert(0, swimmer.copy(id = id))
       selectedSwimmerId.value = id
 
   def update(previousSwimmer: Swimmer, updatedSwimmer: Swimmer): Unit =
     supervised:
-      assertNotInFxThread("*** update swimmer should not be in fx thread!")
+      assertNotInFxThread("*** update swimmer")
       store.updateSwimmer(updatedSwimmer)
       val index = observableSwimmers.indexOf(previousSwimmer)
       if index > -1 then observableSwimmers.update(index, updatedSwimmer)      
 
   def sessions(swimmerId: Long): Unit =
     supervised:
-      assertNotInFxThread("*** list sessions should not be in fx thread!")
+      assertNotInFxThread("*** list sessions")
       observableSessions ++= store.listSessions(swimmerId)
 
   def add(session: Session): Unit =
     supervised:
-      assertNotInFxThread("*** add session should not be in fx thread!")
+      assertNotInFxThread("*** add session")
       val id = store.addSession(session)
       observableSessions.insert(0, session.copy(id = id))
       selectedSessionId.value = id
 
   def update(previousSession: Session, updatedSession: Session): Unit =
     supervised:
-      assertNotInFxThread("*** update session should not be in fx thread!")
+      assertNotInFxThread("*** update session")
       store.updateSession(updatedSession)
       val index = observableSessions.indexOf(previousSession)
       if index > -1 then observableSessions.update(index, updatedSession)
