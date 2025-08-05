@@ -3,7 +3,7 @@
       "swimmer-sessions": "jdeploy-bundle/jdeploy.js"
   },
   "author": "Objektwerks",
-  "description": "Swimmer app.",
+  "description": "Swimmer sessions app.",
   "main": "index.js",
   "preferGlobal": true,
   "repository": {
