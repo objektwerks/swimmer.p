@@ -1,21 +1,21 @@
 create table if not exists swimmer (
-  id BIGSERIAL PRIMARY KEY,
-  name VARCHAR(24) NOT NULL
+  id long primary key auto_increment,
+  name varchar(24) not null
 );
 
 create table if not exists session (
-  id BIGSERIAL PRIMARY KEY,
-  swimmer_id BIGINT REFERENCES swimmer(id),
-  weight INT NOT NULL,
-  weight_unit CHAR(2) NOT NULL,
-  laps INT NOT NULL,
-  lap_distance INT NOT NULL,
-  lap_unit VARCHAR(6) NOT NULL,
-  style VARCHAR(9) NOT NULL,
-  kickboard BOOLEAN NOT NULL,
-  fins BOOLEAN NOT NULL,
-  minutes INT NOT NULL,
-  seconds INT NOT NULL,
-  calories INT NOT NULL,
-  datetime BIGINT NOT NULL
+  id long primary key auto_increment,
+  swimmer_id long references swimmer(id),
+  weight int not null,
+  weight_unit char(2) not null,
+  laps int not null,
+  lap_distance int not null,
+  lap_unit varchar(6) not null,
+  style varchar(9) not null,
+  kickboard boolean not null,
+  fins boolean not null,
+  minutes int not null,
+  seconds int not null,
+  calories int not null,
+  datetime bigint not null
 );
