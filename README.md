@@ -28,6 +28,28 @@ Execute
 -------
 1. ```java -jar .assembly/swimmer-$version.jar```
 
+Deploy
+------
+1. edit build.sbt ( jarVersion + version )
+2. edit app.conf ( about > alert > contentText )
+3. edit package.json ( version + jdeploy / jar )
+4. sbt clean test assembly copyAssemblyJar
+5. perform github release ( from https://github.com/objektwerks/pool.balance.p )
+6. npm login
+7. jdeploy publish ( to https://www.jdeploy.com/~poolbalance )
+8. check email for npm message
+>See [jDeploy Docs](https://www.jdeploy.com/docs/manual/#_getting_started) for details.
+
+jDeploy Install
+---------------
+1. Setup npm account at npmjs.com
+2. Install node, which installs npm, which bundles npx.
+3. Install jdeploy via npm - *npm install -g jdeploy*
+4. Add icon.png ( 256x256 or 512x512 ) to project root and resources.
+5. Edit jDeploy *package.json* as required.
+6. Add *jdeploy* and *jdeploy-bundle* to .gitignore
+>See [jDeploy Docs](https://www.jdeploy.com/docs/manual/#_getting_started) for details.
+
 Resources
 ---------
 * [JavaFX](https://openjfx.io/index.html)
