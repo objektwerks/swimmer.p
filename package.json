@@ -1,6 +1,6 @@
 {
   "bin": {
-      "swimmer": "jdeploy-bundle/jdeploy.js"
+      "swimmer-workout": "jdeploy-bundle/jdeploy.js"
   },
   "author": "Objektwerks",
   "description": "Swimmer app.",
