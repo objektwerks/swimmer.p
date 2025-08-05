@@ -27,7 +27,7 @@
       "shelljs": "^0.8.5"
   },
   "license": "Apache 2.0",
-  "name": "swimmer",
+  "name": "swimmer-workout",
   "files": [
       "jdeploy-bundle"
   ],
