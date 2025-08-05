@@ -1,22 +1,9 @@
-DROP SCHEMA PUBLIC CASCADE;
-CREATE SCHEMA PUBLIC;
-
-CREATE TABLE account (
+create table if not exists swimmer (
   id BIGSERIAL PRIMARY KEY,
-  license CHAR(36) UNIQUE NOT NULL,
-  email_address VARCHAR UNIQUE NOT NULL,
-  pin CHAR(7) NOT NULL,
-  activated BIGINT NOT NULL,
-  deactivated BIGINT NOT NULL
-);
-
-CREATE TABLE swimmer (
-  id BIGSERIAL PRIMARY KEY,
-  account_id BIGINT REFERENCES account(id),
   name VARCHAR(24) NOT NULL
 );
 
-CREATE TABLE session (
+create table if not exists session (
   id BIGSERIAL PRIMARY KEY,
   swimmer_id BIGINT REFERENCES swimmer(id),
   weight INT NOT NULL,
@@ -31,9 +18,4 @@ CREATE TABLE session (
   seconds INT NOT NULL,
   calories INT NOT NULL,
   datetime BIGINT NOT NULL
-);
-
-CREATE TABLE fault (
-  cause VARCHAR NOT NULL,
-  occurred VARCHAR NOT NULL
 );
