@@ -34,4 +34,6 @@ object App extends JFXApp3 with LazyLogging:
     stage.show()
     logger.info("Swimmer started at url: {}", context.url)
 
+    model.swimmers()
+
   override def stopApp(): Unit = logger.info("Swimmer stopped.")
