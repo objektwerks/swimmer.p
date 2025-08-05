@@ -18,7 +18,7 @@ final class StoreTest extends AnyFunSuite with Matchers:
     listSwimmers()
 
     addSession()
-
+    updateSession()
 
   def addSwimmer(): Unit =
     val swimmerId = store.addSwimmer(swimmer)
@@ -34,4 +34,8 @@ final class StoreTest extends AnyFunSuite with Matchers:
     store.listSwimmers().length shouldBe 1
 
   def addSession(): Unit =
+    store.addSession(session)
+
+  def updateSession(): Unit =
+    session = session.copy(laps = 30, minutes = 30)
     store.updateSession(session)
