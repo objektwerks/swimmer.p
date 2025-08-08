@@ -1,6 +1,6 @@
 Swimmer ( Personal Edition )
 ----------------------------
->Swimmer app using ScalaFx, ScalikeJdbc, H2, HikariCP, Ox, jDeploy and Scala 3
+>Swimmer app using ScalaFx, ScalikeJdbc, H2, HikariCP, Ox, jDeploy and Scala 3.
 
 Model
 -----
