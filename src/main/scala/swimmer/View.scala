@@ -28,7 +28,7 @@ final class View(context: Context, model: Model):
   splitPane.setDividerPositions(0.20, 0.80)
   VBox.setVgrow(splitPane, Priority.Always)
 
-  vbox.children = List(splitPane)
+  vbox.children = List(menu, splitPane)
 
   val scene = new Scene:
     root = vbox
