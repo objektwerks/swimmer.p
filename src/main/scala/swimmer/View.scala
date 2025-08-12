@@ -8,6 +8,8 @@ import scalafx.scene.layout.{Priority, VBox}
 import swimmer.pane.{SessionsPane, SwimmersPane}
 
 final class View(context: Context, model: Model):
+  val menu = Menu(context)
+
   val vbox = new VBox:
     prefWidth = context.windowWidth
     prefHeight = context.windowHeight
