@@ -48,14 +48,14 @@ final class Model(store: Store) extends LazyLogging:
   def add(swimmer: Swimmer): Unit =
     println("*** add swimmer in : " + swimmer.toString)
     supervised:
-      assertNotInFxThread("*** add swimmer")
+      assertNotInFxThread("*** add swimmer: " + swimmer.toString)
       val id = store.addSwimmer(swimmer)
       observableSwimmers.insert(0, swimmer.copy(id = id))
       selectedSwimmerId.value = id
     println("*** add swimmer out")
 
   def update(previousSwimmer: Swimmer, updatedSwimmer: Swimmer): Unit =
-    println("*** update swimmer in : " + previousSwimmer.toString + " " + updatedSwimmer)
+    println("*** update swimmer in: " + previousSwimmer.toString + " " + updatedSwimmer)
     supervised:
       assertNotInFxThread("*** update swimmer")
       store.updateSwimmer(updatedSwimmer)
@@ -64,9 +64,11 @@ final class Model(store: Store) extends LazyLogging:
     println("*** update swimmer out")
 
   def sessions(swimmerId: Long): Unit =
+    println("*** list sessions in: " + swimmerId)
     supervised:
       assertNotInFxThread("*** list sessions")
       observableSessions ++= store.listSessions(swimmerId)
+    println("*** list sessions out")
 
   def add(session: Session): Unit =
     supervised:
