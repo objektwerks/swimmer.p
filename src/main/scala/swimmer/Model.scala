@@ -27,12 +27,13 @@ final class Model(store: Store) extends LazyLogging:
   val observableSessions = ObservableBuffer[Session]()
 
   observableSwimmers.onChange { (_, changes) =>
-    println("*** observable swimmers onchange event: " + changes.toString())
+    println("*** observable swimmers onchange event: " + changes.toString)
     logger.info("*** observable swimmers onchange event: {}", changes)
     assertInFxThread("*** observable swimmers onchange")
   }
 
   observableSessions.onChange { (_, changes) =>
+    println("*** observable sessions onchange event: " + changes.toString)
     logger.info("*** observable sessions onchange event: {}", changes)
     assertInFxThread("*** observable sessions onchange")
   }
