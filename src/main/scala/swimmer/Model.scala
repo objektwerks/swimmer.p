@@ -39,9 +39,11 @@ final class Model(store: Store) extends LazyLogging:
   logger.info("Model initialized.")
 
   def swimmers(): Unit =
+    println("*** swimmers in")
     supervised:
       assertNotInFxThread("*** swimmers")
       observableSwimmers ++= store.listSwimmers()
+    println("*** swimmers out")
 
   def add(swimmer: Swimmer): Unit =
     supervised:
