@@ -73,11 +73,13 @@ final class Model(store: Store) extends LazyLogging:
     println("*** list sessions out")
 
   def add(session: Session): Unit =
+    println("*** add session in: " + session.toString)
     supervised:
       assertNotInFxThread("*** add session")
       val id = store.addSession(session)
       observableSessions.insert(0, session.copy(id = id))
       selectedSessionId.value = id
+    println("*** add session out")
 
   def update(previousSession: Session, updatedSession: Session): Unit =
     supervised:
