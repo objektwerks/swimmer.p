@@ -46,7 +46,7 @@ final class Model(store: Store) extends LazyLogging:
     println("*** list swimmers out")
 
   def add(swimmer: Swimmer): Unit =
-    println("*** add swimmer in")
+    println("*** add swimmer in : " + swimmer.toString)
     supervised:
       assertNotInFxThread("*** add swimmer")
       val id = store.addSwimmer(swimmer)
@@ -55,11 +55,13 @@ final class Model(store: Store) extends LazyLogging:
     println("*** add swimmer out")
 
   def update(previousSwimmer: Swimmer, updatedSwimmer: Swimmer): Unit =
+    println("*** update swimmer in : " + previousSwimmer.toString + " " + updatedSwimmer)
     supervised:
       assertNotInFxThread("*** update swimmer")
       store.updateSwimmer(updatedSwimmer)
       val index = observableSwimmers.indexOf(previousSwimmer)
       if index > -1 then observableSwimmers.update(index, updatedSwimmer)      
+    println("*** update swimmer out")
 
   def sessions(swimmerId: Long): Unit =
     supervised:
