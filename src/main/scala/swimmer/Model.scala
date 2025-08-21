@@ -18,6 +18,7 @@ final class Model(store: Store) extends LazyLogging:
   val selectedSessionId = ObjectProperty[Long](0)
 
   selectedSwimmerId.onChange { (_, oldSwimmerId, newSwimmerId) =>
+    println("*** selected swimmer id onchange event: " + oldSwimmerId + " -> " + newSwimmerId)
     logger.info("*** selected swimmer id onchange event: {} -> {}", oldSwimmerId, newSwimmerId)
     assertInFxThread("*** selected swimmer id onchange")
     sessions(newSwimmerId)
