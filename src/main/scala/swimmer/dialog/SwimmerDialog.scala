@@ -14,7 +14,7 @@ final class SwimmerDialog(context: Context, swimmer: Swimmer) extends Dialog[Swi
   headerText = context.dialogSwimmer
 
   val nameTextField = new NonEmptyTextField:
-    text = swimmer.name
+    text = if swimmer.name.isEmpty() then "name" else swimmer.name
 
   val controls = List[(String, Region)](
     context.labelName -> nameTextField
