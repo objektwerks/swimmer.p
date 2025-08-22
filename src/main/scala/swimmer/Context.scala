@@ -44,6 +44,7 @@ final class Context(config: Config):
   val dialogSession = config.getString("dialog.session")
   val dialogCharts = config.getString("dialog.charts")
   val dialogFaults = config.getString("dialog.faults")
+  val dialogName = config.getString("dialog.name")
 
   val errorServer = config.getString("error.server")
   val errorRegister = config.getString("error.register")
