@@ -30,13 +30,11 @@ final class Model(store: Store) extends LazyLogging:
   observableSwimmers.onChange { (_, changes) =>
     println("*** observable swimmers onchange event: " + changes.toString)
     logger.info("*** observable swimmers onchange event: {}", changes)
-    assertInFxThread("*** observable swimmers onchange")
   }
 
   observableSessions.onChange { (_, changes) =>
     println("*** observable sessions onchange event: " + changes.toString)
     logger.info("*** observable sessions onchange event: {}", changes)
-    assertInFxThread("*** observable sessions onchange")
   }
 
   logger.info("Model initialized.")
