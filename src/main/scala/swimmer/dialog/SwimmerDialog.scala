@@ -2,17 +2,18 @@ package swimmer.dialog
 
 import scalafx.Includes.*
 import scalafx.scene.layout.Region
-import scalafx.scene.control.{ButtonType, Dialog, TextField}
+import scalafx.scene.control.{ButtonType, Dialog}
 import scalafx.scene.control.ButtonBar.ButtonData
 
 import swimmer.{App, Context, Swimmer}
+import swimmer.control.NonEmptyTextField
 
 final class SwimmerDialog(context: Context, swimmer: Swimmer) extends Dialog[Swimmer]:
   initOwner(App.stage)
   title = context.windowTitle
   headerText = context.dialogSwimmer
 
-  val nameTextField = new TextField:
+  val nameTextField = new NonEmptyTextField:
     text = swimmer.name
 
   val controls = List[(String, Region)](
