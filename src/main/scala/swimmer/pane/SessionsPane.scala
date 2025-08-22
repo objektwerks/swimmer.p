@@ -103,7 +103,7 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
   VBox.setVgrow(tableView, Priority.Always)
   VBox.setVgrow(tabPane, Priority.Always)
 
-  model.selectedSessionId.onChange { (_, _, _) =>
+  model.selectedSwimmerId.onChange { (_, _, _) =>
     addButton.disable = false
     chartButton.disable = false
   }
