@@ -51,12 +51,10 @@ final class Model(store: Store) extends LazyLogging:
     println("*** update swimmer out")
 
   def sessions(swimmerId: Long): Unit =
-    println("*** list sessions in: " + swimmerId)
     supervised:
       assertNotInFxThread("*** list sessions")
       observableSessions.clear
       observableSessions ++= store.listSessions(swimmerId)
-    println("*** list sessions out")
 
   def add(session: Session): Unit =
     println("*** add session in: " + session.toString)
