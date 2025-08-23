@@ -28,7 +28,7 @@ final class CaloriesChart(context: Context, model: Model) extends Tab:
                                                  xMaxDate = maxDate,
                                                  yLabel = context.tabCalories,
                                                  yLowerBound = 100,
-                                                 yUpperBound = 10000,
+                                                 yUpperBound = 1000,
                                                  yTickUnit = 100,
                                                  yValues = filtered.map(exy => exy.yCount))
     filtered foreach { exy =>
