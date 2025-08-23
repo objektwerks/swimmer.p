@@ -39,7 +39,7 @@ Execute
 
 Deploy
 ------
-1. edit build.sbt ( jarVersion + version )
+1. edit build.sbt ( version )
 2. edit app.conf ( about > alert > contentText )
 3. edit package.json ( version + jdeploy / jar )
 4. sbt clean test assembly copyAssemblyJar
