@@ -17,19 +17,12 @@ final class Model(store: Store) extends LazyLogging:
   val selectedSwimmerId = ObjectProperty[Long](0)
   val selectedSessionId = ObjectProperty[Long](0)
 
-  selectedSwimmerId.onChange { (_, oldSwimmerId, newSwimmerId) =>
-    println("*** selected swimmer id onchange event: " + oldSwimmerId + " -> " + newSwimmerId)
-    logger.info("*** selected swimmer id onchange event: {} -> {}", oldSwimmerId, newSwimmerId)
+  selectedSwimmerId.onChange { (_, _, newSwimmerId) =>
     sessions(newSwimmerId)
   }
 
   val observableSwimmers = ObservableBuffer[Swimmer]()
   val observableSessions = ObservableBuffer[Session]()
-
-  observableSwimmers.onChange { (_, changes) =>
-    println("*** observable swimmers onchange event: " + changes.toString)
-    logger.info("*** observable swimmers onchange event: {}", changes)
-  }
 
   observableSessions.onChange { (_, changes) =>
     println("*** observable sessions onchange event: " + changes.toString)
