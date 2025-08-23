@@ -24,11 +24,6 @@ final class Model(store: Store) extends LazyLogging:
   val observableSwimmers = ObservableBuffer[Swimmer]()
   val observableSessions = ObservableBuffer[Session]()
 
-  observableSessions.onChange { (_, changes) =>
-    println("*** observable sessions onchange event: " + changes.toString)
-    logger.info("*** observable sessions onchange event: {}", changes)
-  }
-
   logger.info("Model initialized.")
 
   def swimmers(): Unit =
