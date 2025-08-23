@@ -50,24 +50,22 @@ final class Model(store: Store) extends LazyLogging:
 
   def sessions(swimmerId: Long): Unit =
     supervised:
-      assertNotInFxThread("*** list sessions")
+      assertNotInFxThread("list sessions")
       observableSessions.clear
       observableSessions ++= store.listSessions(swimmerId)
 
   def add(session: Session): Unit =
-    println("*** add session in: " + session.toString)
     supervised:
-      assertNotInFxThread("*** add session")
+      assertNotInFxThread(s"add session: $session")
       val id = store.addSession(session)
       observableSessions.insert(0, session.copy(id = id))
       selectedSessionId.value = id
-    println("*** add session out")
+      logger.info(s"Added session: $session")
 
   def update(previousSession: Session, updatedSession: Session): Unit =
-    println("*** update session in: " + previousSession.toString + " " + updatedSession)
     supervised:
-      assertNotInFxThread("*** update session")
+      assertNotInFxThread(s"update session from: $previousSession to: $updatedSession")
       store.updateSession(updatedSession)
       val index = observableSessions.indexOf(previousSession)
       if index > -1 then observableSessions.update(index, updatedSession)
-    println("*** update session out")
+      logger.info(s"Updated session from: $previousSession to: $updatedSession")
