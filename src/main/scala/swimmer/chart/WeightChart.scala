@@ -27,8 +27,8 @@ final class WeightChart(context: Context, model: Model) extends Tab:
                                                  xMinDate = minDate,
                                                  xMaxDate = maxDate,
                                                  yLabel = context.tabWeight,
-                                                 yLowerBound = 50,
-                                                 yUpperBound = 400,
+                                                 yLowerBound = 100,
+                                                 yUpperBound = 300,
                                                  yTickUnit = 50,
                                                  yValues = filtered.map(exy => exy.yCount))
     filtered foreach { exy =>
