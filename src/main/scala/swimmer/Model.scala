@@ -42,6 +42,7 @@ final class Model(store: Store) extends LazyLogging:
     println("*** list swimmers in")
     supervised:
       assertNotInFxThread("*** swimmers")
+      observableSwimmers.clear
       observableSwimmers ++= store.listSwimmers()
     println("*** list swimmers out")
 
@@ -67,6 +68,7 @@ final class Model(store: Store) extends LazyLogging:
     println("*** list sessions in: " + swimmerId)
     supervised:
       assertNotInFxThread("*** list sessions")
+      observableSessions.clear
       observableSessions ++= store.listSessions(swimmerId)
     println("*** list sessions out")
 
