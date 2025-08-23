@@ -28,13 +28,13 @@ final class Model(store: Store) extends LazyLogging:
 
   def swimmers(): Unit =
     supervised:
-      assertNotInFxThread("*** swimmers")
+      assertNotInFxThread("list swimmers")
       observableSwimmers.clear
       observableSwimmers ++= store.listSwimmers()
 
   def add(swimmer: Swimmer): Unit =
     supervised:
-      assertNotInFxThread("*** add swimmer: " + swimmer.toString)
+      assertNotInFxThread(s"add swimmer: $swimmer")
       val id = store.addSwimmer(swimmer)
       observableSwimmers.insert(0, swimmer.copy(id = id))
       selectedSwimmerId.value = id
@@ -42,7 +42,7 @@ final class Model(store: Store) extends LazyLogging:
 
   def update(previousSwimmer: Swimmer, updatedSwimmer: Swimmer): Unit =
     supervised:
-      assertNotInFxThread("*** update swimmer")
+      assertNotInFxThread(s"update swimmer from: $previousSwimmer to: $updatedSwimmer")
       store.updateSwimmer(updatedSwimmer)
       val index = observableSwimmers.indexOf(previousSwimmer)
       if index > -1 then observableSwimmers.update(index, updatedSwimmer)      
