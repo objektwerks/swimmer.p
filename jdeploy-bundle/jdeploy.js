@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-var jarName = "swimmer-1.0.1.jar";
+var jarName = "swimmer-1.1.0.jar";
 var mainClass = "{{MAIN_CLASS}}";
 var classPath = "{{CLASSPATH}}";
 var port = "0";
