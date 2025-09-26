@@ -9,7 +9,7 @@ libraryDependencies ++= {
     "com.softwaremill.ox" %% "core" % "1.0.0",
     "org.scalikejdbc" %% "scalikejdbc" % "4.3.2",
     "com.zaxxer" % "HikariCP" % "7.0.2" exclude("org.slf4j", "slf4j-api"),
-    "com.h2database" % "h2" % "2.3.232",
+    "com.h2database" % "h2" % "2.4.240",
     "com.typesafe" % "config" % "1.4.3",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5",
     "ch.qos.logback" % "logback-classic" % "1.5.18",
