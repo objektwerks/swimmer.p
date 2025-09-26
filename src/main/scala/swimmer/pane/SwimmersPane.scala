@@ -74,10 +74,11 @@ final class SwimmersPane(context: Context, model: Model) extends VBox:
       case _ =>
 
   def update(): Unit =
-    val selectedIndex = tableView.selectionModel().getSelectedIndex
-    val swimmer = tableView.selectionModel().getSelectedItem.swimmer
-    SwimmerDialog(context, swimmer).showAndWait() match
-      case Some(updatedSwimmer: Swimmer) =>
-        model.update(swimmer, updatedSwimmer)
-        tableView.selectionModel().select(selectedIndex)
-      case _ =>
+    if tableView.selectionModel().getSelectedItem != null then
+      val selectedIndex = tableView.selectionModel().getSelectedIndex
+      val swimmer = tableView.selectionModel().getSelectedItem.swimmer
+      SwimmerDialog(context, swimmer).showAndWait() match
+        case Some(updatedSwimmer: Swimmer) =>
+          model.update(swimmer, updatedSwimmer)
+          tableView.selectionModel().select(selectedIndex)
+        case _ =>
