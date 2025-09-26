@@ -29,6 +29,10 @@ Test
 ----
 1. sbt clean test
 
+Run
+---
+1. sbt run
+
 Assembly
 --------
 1. ```sbt clean test assembly copyAssemblyJar```
