@@ -10,13 +10,13 @@
       "type": "git",
       "url": "git+https://github.com/objektwerks/swimmer.p.git"
   },
-  "version": "1.1.1",
+  "version": "1.2.0",
   "jdeploy": {
       "jdk": false,
-      "javaVersion": "24",
-      "jar": ".assembly/swimmer-1.1.1.jar",
+      "javaVersion": "25",
+      "jar": ".assembly/swimmer-1.2.0.jar",
       "javafx": true,
-      "javafxVersion": "24.0.1",
+      "javafxVersion": "25",
       "title": "Swimmer"
   },
   "dependencies": {
