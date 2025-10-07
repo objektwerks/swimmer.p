@@ -1,6 +1,6 @@
 name := "swimmer.p"
 organization := "objektwerks"
-version := "1.3.0"
+version := "1.4.0"
 scalaVersion := "3.7.4-RC1"
 mainClass := Some("swimmer.App")
 libraryDependencies ++= {
