@@ -108,7 +108,7 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
     addButton.disable = false
   }
 
-  model.selectedSwimmerId.onChange { (_, _, _) =>
+  model.selectedSessionId.onChange { (_, _, _) =>
     chartButton.disable = false
   }
 
