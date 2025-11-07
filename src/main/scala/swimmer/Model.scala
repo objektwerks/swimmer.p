@@ -45,8 +45,11 @@ final class Model(store: Store) extends LazyLogging:
       assertNotInFxThread(s"update swimmer from: $previousSwimmer to: $updatedSwimmer")
       store.updateSwimmer(updatedSwimmer)
       val index = observableSwimmers.indexOf(previousSwimmer)
-      if index > -1 then observableSwimmers.update(index, updatedSwimmer)      
-      logger.info(s"Updated swimmer from: $previousSwimmer to: $updatedSwimmer")
+      if index > -1 then
+        observableSwimmers.update(index, updatedSwimmer)      
+        logger.info(s"Updated swimmer from: $previousSwimmer to: $updatedSwimmer")
+      else
+        logger.error(s"Update of swimmer: $updatedSwimmer \nfailed due to invalid index: $index")
 
   def sessions(swimmerId: Long): Unit =
     supervised:
