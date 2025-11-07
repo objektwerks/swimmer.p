@@ -53,7 +53,7 @@ final class Model(store: Store) extends LazyLogging:
 
   def sessions(swimmerId: Long): Unit =
     supervised:
-      assertNotInFxThread("list sessions")
+      assertNotInFxThread(s"list sessions, swimmer id: $swimmerId")
       observableSessions.clear
       observableSessions ++= store.listSessions(swimmerId)
 
