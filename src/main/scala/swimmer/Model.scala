@@ -72,6 +72,6 @@ final class Model(store: Store) extends LazyLogging:
       val index = observableSessions.indexOf(previousSession)
       if index > -1 then
         observableSessions.update(index, updatedSession)
-        logger.info(s"Updated session: $updatedSession")
+        logger.info(s"Updated session from: $previousSession to: $updatedSession")
       else
         logger.error(s"Update of session: $updatedSession \nfailed due to invalid index: $index")
