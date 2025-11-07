@@ -47,7 +47,7 @@ final class Model(store: Store) extends LazyLogging:
       val index = observableSwimmers.indexOf(previousSwimmer)
       if index > -1 then
         observableSwimmers.update(index, updatedSwimmer)      
-        logger.info(s"Updated swimmer: $updatedSwimmer")
+        logger.info(s"Updated swimmer from: $previousSwimmer to: $updatedSwimmer")
       else
         logger.error(s"Update of swimmer: $updatedSwimmer \nfailed due to invalid index: $index")
 
