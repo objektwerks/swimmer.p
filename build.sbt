@@ -1,7 +1,7 @@
 name := "swimmer.p"
 organization := "objektwerks"
 version := "1.4.1"
-scalaVersion := "3.8.0-RC3"
+scalaVersion := "3.8.0-RC4"
 mainClass := Some("swimmer.App")
 libraryDependencies ++= {
   Seq(
