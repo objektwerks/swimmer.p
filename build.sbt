@@ -5,7 +5,7 @@ scalaVersion := "3.8.2-RC3"
 mainClass := Some("swimmer.App")
 libraryDependencies ++= {
   Seq(
-    "org.scalafx" %% "scalafx" % "24.0.2-R36",
+    "org.scalafx" %% "scalafx" % "25.0.2-R37",
     "com.softwaremill.ox" %% "core" % "1.0.4",
     "org.scalikejdbc" %% "scalikejdbc" % "4.3.5",
     "com.zaxxer" % "HikariCP" % "7.0.2" exclude("org.slf4j", "slf4j-api"),
