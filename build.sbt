@@ -6,7 +6,7 @@ mainClass := Some("swimmer.App")
 libraryDependencies ++= {
   Seq(
     "org.scalafx" %% "scalafx" % "27.0.0-R39",
-    "com.softwaremill.ox" %% "core" % "1.0.9",
+    "com.softwaremill.ox" %% "core" % "1.1.0",
     "org.scalikejdbc" %% "scalikejdbc" % "4.3.5",
     "com.zaxxer" % "HikariCP" % "7.0.2" exclude("org.slf4j", "slf4j-api"),
     "com.h2database" % "h2" % "2.4.240",
